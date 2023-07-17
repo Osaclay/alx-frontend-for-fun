@@ -15,14 +15,24 @@ def convert_heading(line):
     if match:
         level = len(match.group(1))
         heading_text = match.group(2)
-        return f"<h{level}>{heading_text}</h{level}>"
+        return f"<h{level}>{heading_text}</h{level}>\n"
     return line
 
 def convert_unordered_list(line):
     """
     Converts a Markdown unordered list item to HTML.
     """
-    match = re.match(r'^- (.+)', line)
+    match = re.match(r'^\* (.+)', line)
+    if match:
+        item_text = match.group(1)
+        return f"<li>{item_text}</li>"
+    return line
+
+def convert_ordered_list(line):
+    """
+    Converts a Markdown ordered list item to HTML.
+    """
+    match = re.match(r'^\d+\. (.+)', line)
     if match:
         item_text = match.group(1)
         return f"<li>{item_text}</li>"
@@ -50,20 +60,21 @@ if __name__ == "__main__":
     for line in markdown_content:
         line = convert_heading(line)
         line = convert_unordered_list(line)
+        line = convert_ordered_list(line)
 
         if line.startswith("<li>"):
             if not in_list:
-                html_lines.append("<ul>\n")
+                html_lines.append("<ol>\n")
                 in_list = True
         else:
             if in_list:
-                html_lines.append("</ul>\n")
+                html_lines.append("</ol>\n")
                 in_list = False
 
         html_lines.append(line)
 
     if in_list:
-        html_lines.append("</ul>\n")
+        html_lines.append("</ol>\n")
 
     html_content = ''.join(html_lines)
 
