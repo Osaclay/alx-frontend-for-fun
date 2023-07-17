@@ -15,7 +15,7 @@ def convert_heading(line):
     if match:
         level = len(match.group(1))
         heading_text = match.group(2)
-        return f"<h{level}>{heading_text}</h{level}>\n"
+        return f"<h{level}>{heading_text}</h{level}>"
     return line
 
 def convert_unordered_list(line):
@@ -25,12 +25,12 @@ def convert_unordered_list(line):
     match = re.match(r'^- (.+)', line)
     if match:
         item_text = match.group(1)
-        return f"<li>{item_text}</li>\n"
+        return f"<li>{item_text}</li>"
     return line
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+        sys.stderr.write("Usage: ./markdown2html.py <input_file> <output_file>\n")
         sys.exit(1)
 
     input_file = sys.argv[1]
@@ -46,10 +46,24 @@ if __name__ == "__main__":
 
     # Convert Markdown to HTML
     html_lines = []
+    in_list = False
     for line in markdown_content:
         line = convert_heading(line)
         line = convert_unordered_list(line)
+
+        if line.startswith("<li>"):
+            if not in_list:
+                html_lines.append("<ul>\n")
+                in_list = True
+        else:
+            if in_list:
+                html_lines.append("</ul>\n")
+                in_list = False
+
         html_lines.append(line)
+
+    if in_list:
+        html_lines.append("</ul>\n")
 
     html_content = ''.join(html_lines)
 
