@@ -36,6 +36,14 @@ def convert_paragraph(line):
         return f"<p>{line.strip()}</p>"
     return line
 
+def convert_bold(line):
+    """
+    Converts bold syntax in Markdown to HTML.
+    """
+    line = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line)
+    line = re.sub(r'__(.+?)__', r'<em>\1</em>', line)
+    return line
+
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         sys.stderr.write("Usage: ./markdown2html.py <input_file> <output_file>\n")
@@ -59,6 +67,7 @@ if __name__ == "__main__":
         line = convert_heading(line)
         line = convert_unordered_list(line)
         line = convert_paragraph(line)
+        line = convert_bold(line)
 
         if line.startswith("<li>"):
             if not in_list:
