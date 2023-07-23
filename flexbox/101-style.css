@@ -10,32 +10,42 @@
     color: white;
 }
 
-.box1 {
-    background: lime;
-    flex-basis: 5%;
+.box1  {
+    background: rgb(25, 25, 25);
+    flex-basis: 10%;
     font-size: 2rem;
+    height: 100px;
+    line-height: 97px;
 }
 
 .box2 {
-    background: lightskyblue;
+    background: rgb(5, 249, 99);
     flex-basis: 15%;
-    font-size: 7rem;
+    font-size: 4rem;
+    height: 140px;
+    line-height: 135px;
 }
 
 .box3 {
-    background: darkblue;
+    background: rgb(77, 77, 247);
     flex-basis: 30%;
-    font-size: 12rem;
+    font-size: 7rem;
+    height: 230px;
+    line-height: 225px;
 }
 
 .box4 {
-    background: darkmagenta;
+    background: rgb(242, 36, 5);
     flex-basis: 15%;
-    font-size: 7rem;
+    font-size: 4rem;
+    height: 140px;
+    line-height: 135px;
 }
 
 .box5 {
-    background: darkorange;
-    flex-basis: 5%;
+    background: rgb(25, 25, 25);
+    flex-basis: 10%;
     font-size: 2rem;
+    height: 100px;
+    line-height: 97px;
 }
