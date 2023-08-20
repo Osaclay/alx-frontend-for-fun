@@ -1,12 +1,12 @@
 /* A Sass file that assigns text color to button tags when the user hovers over button tags */
 
-$first-color: #00FF00;
-$second-color: #FF0000;
+$first-color: #FF0000;
+$second-color:#00FF00;
 
 button {
-    color: $second-color;
+    color: $first-color;
 
     &:hover {
-        color: $first-color;
+        color: $second-color;
     }
 }
