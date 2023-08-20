@@ -1,0 +1,15 @@
+/* Assigns margin left and right to body tags,
+margin left and right to div tags */
+
+@mixin my-margin($value) {
+  margin-left: $value;
+  margin-right: $value;
+}
+
+body {
+  @include my-margin(10px);
+}
+
+div {
+  @include my-margin(15px);
+}
