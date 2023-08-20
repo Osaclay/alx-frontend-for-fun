@@ -3,10 +3,13 @@
 Text color to button tags
 When the user hovers over button tags */
 
+$hover: #00FF00;
+$red: #FF0000;
+
 button {
-    color: #FF0000;
+    color: $red;
 
     &:hover {
-        color: #00FF00;
+        color: $hover;
     }
 }
